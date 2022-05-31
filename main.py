@@ -30,16 +30,25 @@ class EGP_RUB_Currency:
     # Проверка изменения валюты
     def check_currency(self):
         currency = float(self.get_currency_price().replace(",", "."))
-        vibor = input('менять по курсу (введите: 1) или с наценкой (введите: 2): ')
+        vibor = input('менять по курсу (введите: 1), с наценкой (введите: 2) или использовать свой курс (Веедите 3): ')
         if vibor == '1':
-            print('курс доллара к рублю: ' + str(currency))
+            summa = input('Введите сумму которую хотите обменять: ')
+            result = currency * float(summa)
+
         elif vibor == '2':
             procent = input("введите процент наценки: ")
-            svoikurs = currency + currency * (float(procent)/100)
-            print('курс с наценкой: ' + str(svoikurs))
+            summa = input('Введите сумму которую хотите обменять: ')
+            result = (currency + currency * (float(procent) / 100)) * float(summa)
+
+        elif vibor == '3':
+            svoykurs = input('Введите свой курс: ')
+            summa = input('Введите сумму которую хотите обменять: ')
+            result = float(svoykurs.replace(",", "."))*float(summa)
+
         else:
             print('вы сделали не правильный выбор :(')
 
+        print('результат = ' + str(result))
 
 
 # Создание объекта и вызов метода
