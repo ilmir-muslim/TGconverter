@@ -54,3 +54,4 @@ class EGP_RUB_Currency:
 # Создание объекта и вызов метода
 currency = EGP_RUB_Currency()
 currency.check_currency()
+#дальше выносим функию с выбором с отдельный файл (позднее это будет файл диалога с ботом)
