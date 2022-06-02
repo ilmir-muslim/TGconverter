@@ -41,5 +41,6 @@ class USD_RUB_Currency:
         else:
             print('вы сделали не правильный выбор :(')
 
+        result = round(result, 2)
         print('результат = ' + str(result))
 

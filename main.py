@@ -1,6 +1,7 @@
 import USD_RUB as fl1
 import EGP_RUB as fl2
 import svoi_kurs as fl3
+import telegram
 # Импортируем файлы содержащие соответствующие функции
 
 def callfunc (call):
