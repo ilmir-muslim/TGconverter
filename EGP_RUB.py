@@ -1,16 +1,19 @@
 import requests #модуль для обработки URL
 from bs4 import BeautifulSoup #Модуль для работы с HTML
-import time # Модуль для остановки программы
-# Модуль для конвертации доллара к рублю
+import time
+# Модуль для остановки программы
+
+
+#модyль для конвертации гиней в рубли
 
 # Основной класс
-class USD_RUB_Currency:
+class EGP_RUB_Currency:
     #Ссылка на нужную страницу
-    DOLLAR_RUB = 'https://www.google.com/search?sxsrf=ALeKk01NWm6viYijAo3HXYOEQUyDEDtFEw%3A1584716087546&source=hp&ei=N9l0XtDXHs716QTcuaXoAg&q=%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&oq=%D0%B4%D0%BE%D0%BB%D0%BB%D0%B0%D1%80+&gs_l=psy-ab.3.0.35i39i70i258j0i131l4j0j0i131l4.3044.4178..5294...1.0..0.83.544.7......0....1..gws-wiz.......35i39.5QL6Ev1Kfk4'
+    EGP_RUB = 'https://www.google.com/search?q=1+%D0%B5%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9+%D1%84%D1%83%D0%BD%D1%82+%D0%B2+%D1%80%D1%83%D0%B1%D0%BB%D1%8F%D1%85&sxsrf=ALiCzsZhwKZMZ9FTuaTnw5HCt_dHsijRvA%3A1654005278403&ei=Hh6WYpuVGMT3kgXO2ISgBQ&oq=1+%D0%B5%D0%B3%D0%B8%D0%BF%D0%B5+%D0%B2+%D1%80%D1%83%D0%B1%D0%BB%D1%8F%D1%85&gs_lcp=Cgdnd3Mtd2l6EAMYADIGCAAQHhAHMgYIABAeEAcyCggAEB4QDxAIEAcyCggAEB4QDxAIEAc6BwgAEEcQsAM6BAgAEA06CAgAEB4QCBANSgQIQRgASgQIRhgAUKwgWPAlYLkvaANwAXgAgAGHBIgB3g2SAQkyLTIuMS4xLjGYAQCgAQHIAQjAAQE&sclient=gws-wiz'
     #Заголовки для передачи  вместе с URL
     header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
     current_converted_price = 0
-
+    #   difference = 5 #Разница после которой будет отправлено сообщение на почту
 
     def __init__(self):
         # Установка курса валюты при создании объекта
@@ -18,7 +21,7 @@ class USD_RUB_Currency:
 
     # Метод для получения курса валюты
     def get_currency_price(self):
-        full_page = requests.get(self.DOLLAR_RUB, headers=self.header)
+        full_page = requests.get(self.EGP_RUB, headers=self.header)
 
         # Разбираем через BeautifulSoup
         soup = BeautifulSoup(full_page.content, 'html.parser')
@@ -28,7 +31,8 @@ class USD_RUB_Currency:
     # Проверка изменения валюты
     def check_currency(self):
         currency = float(self.get_currency_price().replace(",", "."))
-        vibor = input('менять по курсу (введите: 1) или с наценкой (введите: 2): ')
+        vibor = input('менять по курсу (введите: 1), с наценкой (введите: 2): ')
+
         if vibor == '1':
             summa = input('Введите сумму которую хотите обменять: ')
             result = currency * float(summa)
@@ -42,4 +46,8 @@ class USD_RUB_Currency:
             print('вы сделали не правильный выбор :(')
 
         print('результат = ' + str(result))
+
+
+# Создание объекта и вызов метода
+
 
