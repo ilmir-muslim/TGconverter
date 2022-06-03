@@ -1,7 +1,7 @@
 import requests #модуль для обработки URL
 from bs4 import BeautifulSoup #Модуль для работы с HTML
-import time
-# Модуль для остановки программы
+
+
 
 
 #модyль для конвертации гиней в рубли
